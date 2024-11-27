@@ -1,7 +1,13 @@
+networks:
+  chat_network:
+    driver: bridge
+
 services:
   mongodb:
     image: mongo
     container_name: mongo_db
+    networks:
+      - chat_network
     ports:
       - 27017:27017
     volumes:
@@ -13,6 +19,8 @@ services:
   mongo-express:
     image: mongo-express
     container_name: mongo_express
+    networks:
+      - chat_network
     restart: always
     ports:
       - 8081:8081
